@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Weekly Sharing — a weekly practice for sharing openly, learning together, and turning small insights into real growth."
+    />
+    <title>Weekly Sharing</title>
+    <style>
+      :root {
+        --ink: #171810;
+        --paper: #f4f1e8;
+        --cream: #fffdf6;
+        --acid: #d9ff57;
+        --coral: #ff6b4a;
+        --line: rgba(23, 24, 16, 0.18);
+        --muted: #68695f;
+        --shadow: 0 18px 55px rgba(30, 31, 24, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 10% 5%, rgba(217, 255, 87, 0.36), transparent 26rem),
+          radial-gradient(circle at 96% 90%, rgba(255, 107, 74, 0.15), transparent 28rem),
+          var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        position: relative;
+        width: min(100%, 1440px);
+        min-height: 100svh;
+        margin: 0 auto;
+        padding: 34px clamp(24px, 5vw, 76px) 28px;
+        overflow: hidden;
+      }
+
+      .page::before {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-image: radial-gradient(rgba(23, 24, 16, 0.18) 0.7px, transparent 0.7px);
+        background-size: 15px 15px;
+        opacity: 0.18;
+        content: "";
+        pointer-events: none;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 17px;
+        font-size: 12px;
+        font-weight: 760;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .topbar__mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .topbar__dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--coral);
+        box-shadow: 0 0 0 4px rgba(255, 107, 74, 0.14);
+      }
+
+      .topbar__note {
+        color: var(--muted);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+        gap: clamp(36px, 6vw, 96px);
+        align-items: end;
+        padding: clamp(52px, 7.2vh, 82px) 0 clamp(48px, 6.8vh, 72px);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 18px;
+        font-size: 12px;
+        font-weight: 780;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 34px;
+        height: 2px;
+        background: var(--ink);
+        content: "";
+      }
+
+      h1 {
+        max-width: 900px;
+        margin: 0;
+        font-size: clamp(62px, 8.4vw, 126px);
+        font-weight: 880;
+        letter-spacing: -0.072em;
+        line-height: 0.82;
+        text-transform: uppercase;
+      }
+
+      h1 span {
+        position: relative;
+        display: inline-block;
+        z-index: 0;
+      }
+
+      h1 span::after {
+        position: absolute;
+        right: -0.04em;
+        bottom: -0.03em;
+        left: -0.04em;
+        z-index: -1;
+        height: 0.26em;
+        border-radius: 999px;
+        background: var(--acid);
+        transform: rotate(-1.2deg);
+        content: "";
+      }
+
+      .hero__copy {
+        padding-bottom: 3px;
+      }
+
+      .hero__lead {
+        margin: 0 0 22px;
+        font-size: clamp(21px, 2vw, 30px);
+        font-weight: 670;
+        letter-spacing: -0.035em;
+        line-height: 1.18;
+      }
+
+      .hero__body {
+        max-width: 500px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .values {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 24px;
+      }
+
+      .value {
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: rgba(255, 253, 246, 0.54);
+        font-size: 11px;
+        font-weight: 780;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .sessions {
+        display: grid;
+        grid-template-columns: 0.52fr 1fr 1.48fr;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sessions__intro {
+        padding: 28px 28px 28px 0;
+      }
+
+      .section-label {
+        margin: 0 0 13px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 780;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .sessions__intro h2 {
+        margin: 0;
+        font-size: clamp(22px, 2.2vw, 34px);
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+      }
+
+      .session {
+        position: relative;
+        min-height: 260px;
+        border-left: 1px solid var(--line);
+        padding: 28px clamp(22px, 2.4vw, 38px) 25px;
+        background: rgba(255, 253, 246, 0.36);
+        transition: background 180ms ease, transform 180ms ease;
+      }
+
+      .session:hover {
+        z-index: 1;
+        background: var(--cream);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow);
+      }
+
+      .session--featured {
+        background: var(--ink);
+        color: var(--cream);
+      }
+
+      .session--featured:hover {
+        background: #25261b;
+      }
+
+      .session__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 42px;
+        font-size: 11px;
+        font-weight: 780;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .session--featured .session__meta {
+        color: rgba(255, 253, 246, 0.62);
+      }
+
+      .session__number {
+        display: grid;
+        width: 31px;
+        height: 31px;
+        place-items: center;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .session h3 {
+        max-width: 520px;
+        margin: 0 0 14px;
+        font-size: clamp(24px, 2.45vw, 38px);
+        letter-spacing: -0.047em;
+        line-height: 1.02;
+      }
+
+      .session__summary {
+        max-width: 650px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .session--featured .session__summary {
+        color: rgba(255, 253, 246, 0.68);
+      }
+
+      .session__points {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin: 21px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .session__points li {
+        border-top: 1px solid rgba(255, 253, 246, 0.22);
+        padding-top: 9px;
+        color: rgba(255, 253, 246, 0.78);
+        font-size: 11px;
+        line-height: 1.38;
+      }
+
+      .session__points strong {
+        display: block;
+        margin-bottom: 3px;
+        color: var(--acid);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .session__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .session__link::after {
+        font-size: 15px;
+        font-weight: 500;
+        content: "↗";
+        transition: transform 180ms ease;
+      }
+
+      .session__link:hover::after {
+        transform: translate(2px, -2px);
+      }
+
+      .session--featured .session__link {
+        color: var(--acid);
+      }
+
+      .footer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 36px;
+        align-items: center;
+        padding-top: 25px;
+      }
+
+      .footer__invitation {
+        max-width: 700px;
+        margin: 0;
+        font-size: clamp(17px, 1.6vw, 23px);
+        font-weight: 650;
+        letter-spacing: -0.025em;
+        line-height: 1.3;
+      }
+
+      .footer__invitation span {
+        color: var(--muted);
+        font-weight: 470;
+      }
+
+      .manifesto {
+        position: relative;
+        margin: 0;
+        padding: 11px 16px 12px;
+        background: var(--acid);
+        font-size: clamp(15px, 1.55vw, 22px);
+        font-weight: 850;
+        letter-spacing: -0.035em;
+        line-height: 1.05;
+        transform: rotate(-1.1deg);
+      }
+
+      .manifesto::before {
+        position: absolute;
+        inset: -5px;
+        z-index: -1;
+        border: 1px solid var(--ink);
+        content: "";
+      }
+
+      @media (max-width: 900px) {
+        .page {
+          padding-inline: 22px;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 36px;
+          align-items: start;
+          padding-block: 52px;
+        }
+
+        h1 {
+          font-size: clamp(64px, 17vw, 118px);
+        }
+
+        .sessions {
+          grid-template-columns: 1fr;
+        }
+
+        .sessions__intro {
+          padding: 24px 0;
+        }
+
+        .session {
+          min-height: 0;
+          border-top: 1px solid var(--line);
+          border-left: 0;
+          padding: 26px 0 30px;
+        }
+
+        .session--featured {
+          margin-inline: -22px;
+          padding-inline: 22px;
+        }
+
+        .session__meta {
+          margin-bottom: 30px;
+        }
+
+        .footer {
+          grid-template-columns: 1fr;
+          padding-block: 28px 14px;
+        }
+
+        .manifesto {
+          justify-self: start;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .topbar__note {
+          display: none;
+        }
+
+        .session__points {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+
+      @media print {
+        body {
+          background: var(--paper);
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        .page {
+          width: 297mm;
+          min-height: 210mm;
+          padding: 10mm 14mm 8mm;
+        }
+
+        .hero {
+          padding-block: 13mm 11mm;
+        }
+
+        h1 {
+          font-size: 25mm;
+        }
+
+        .session {
+          min-height: 67mm;
+        }
+
+        .session:hover {
+          box-shadow: none;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div class="topbar__mark"><span class="topbar__dot"></span>Weekly practice · Shared growth</div>
+        <div class="topbar__note">Open ideas. Honest questions. Better together.</div>
+      </header>
+
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">A space for curious minds</p>
+          <h1 id="page-title">Weekly<br /><span>Sharing</span></h1>
+        </div>
+
+        <div class="hero__copy">
+          <p class="hero__lead">Bring one thing you learned. Leave with a new way to see.</p>
+          <p class="hero__body">
+            Share what you are learning, thinking about, or currently exploring—a new idea, a useful
+            article, a project update, a lesson from practice, or a question still on your mind. No perfect
+            answer or polished conclusion required.
+          </p>
+          <div class="values" aria-label="Our practices">
+            <span class="value">Show up</span>
+            <span class="value">Share openly</span>
+            <span class="value">Learn together</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sessions" aria-labelledby="sessions-title">
+        <div class="sessions__intro">
+          <p class="section-label">So far</p>
+          <h2 id="sessions-title">Two sessions.<br />One growing practice.</h2>
+        </div>
+
+        <article class="session">
+          <div class="session__meta">
+            <span>Session</span>
+            <span class="session__number">01</span>
+          </div>
+          <h3>Data Pipeline in Agentic AI</h3>
+          <p class="session__summary">Exploring the data layer behind agentic AI.</p>
+          <div class="links">
+            <a
+              class="session__link"
+              href="https://my.feishu.cn/wiki/FNdKw7VjLiGbSAk22TZcyKoDnwd"
+              target="_blank"
+              rel="noreferrer"
+              >Open session</a
+            >
+          </div>
+        </article>
+
+        <article class="session session--featured">
+          <div class="session__meta">
+            <span>Session · DeepSeek Harness</span>
+            <span class="session__number">02</span>
+          </div>
+          <h3>The core is composition. Everything else is a plugin.</h3>
+          <p class="session__summary">
+            Through the Cordis plugin microkernel, E2B remote sandbox, and Goal long-running task cases,
+            we explored how reversibility enables hot reload, test isolation, and dynamic composition.
+          </p>
+          <ul class="session__points">
+            <li><strong>Compose</strong>Product = a plugin tree assembled by configuration.</li>
+            <li><strong>Remember</strong>Session = the single source of truth and append-only log.</li>
+            <li><strong>Extend</strong>Find the smallest sufficient seam outside the Agent Loop.</li>
+          </ul>
+          <div class="links">
+            <a
+              class="session__link"
+              href="https://my.feishu.cn/wiki/AGwkwpeZoiDI9skkPaMcYH8lnAc"
+              target="_blank"
+              rel="noreferrer"
+              >Read notes</a
+            >
+            <a
+              class="session__link"
+              href="https://claude.ai/code/artifact/ff51d108-4545-4c25-8af7-3aaa2c9ec568"
+              target="_blank"
+              rel="noreferrer"
+              >Open artifact</a
+            >
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <p class="footer__invitation">
+          Small insights become real growth through practice.
+          <span>Bring an idea. Bring a question. Help each other move forward.</span>
+        </p>
+        <p class="manifesto">Keep practicing. Grow together. Make life great.</p>
+      </footer>
+    </main>
+  </body>
+</html>
