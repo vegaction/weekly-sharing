@@ -274,47 +274,12 @@
         line-height: 1.02;
       }
 
-      .session__kicker {
-        margin: 0 0 9px;
-        color: var(--coral);
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-
       .session__summary {
         max-width: 650px;
         margin: 0;
         color: var(--muted);
         font-size: 13px;
         line-height: 1.55;
-      }
-
-      .session__points {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        margin: 18px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .session__points li {
-        border-top: 1px solid var(--line);
-        padding-top: 9px;
-        color: var(--muted);
-        font-size: 11px;
-        line-height: 1.38;
-      }
-
-      .session__points strong {
-        display: block;
-        margin-bottom: 3px;
-        color: var(--ink);
-        font-size: 10px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
       }
 
       .links {
@@ -441,10 +406,6 @@
           display: none;
         }
 
-        .session__points {
-          grid-template-columns: 1fr;
-        }
-
         .links {
           flex-direction: column;
           gap: 11px;
@@ -531,7 +492,6 @@
               <span class="session__number">01</span>
             </div>
             <div class="session__content">
-              <p class="session__kicker">Agentic AI</p>
               <h3>Data Pipeline in Agentic AI</h3>
               <p class="session__summary">Exploring the data layer behind agentic AI.</p>
             </div>
@@ -552,17 +512,11 @@
               <span class="session__number">02</span>
             </div>
             <div class="session__content">
-              <p class="session__kicker">DeepSeek Harness</p>
-              <h3>The core is composition. Everything else is a plugin.</h3>
+              <h3>DeepSeek Harness</h3>
               <p class="session__summary">
-                Through the Cordis plugin microkernel, E2B remote sandbox, and Goal long-running task cases,
-                we explored how reversibility enables hot reload, test isolation, and dynamic composition.
+                The core retains only composition, while every capability—including the Agent Loop itself—is
+                implemented as a plugin.
               </p>
-              <ul class="session__points">
-                <li><strong>Compose</strong>Product = a plugin tree assembled by configuration.</li>
-                <li><strong>Remember</strong>Session = the single source of truth and append-only log.</li>
-                <li><strong>Extend</strong>Find the smallest sufficient seam outside the Agent Loop.</li>
-              </ul>
             </div>
             <div class="links">
               <a
