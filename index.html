@@ -187,14 +187,16 @@
       }
 
       .sessions {
-        display: grid;
-        grid-template-columns: 0.52fr 1fr 1.48fr;
         border-top: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
       }
 
       .sessions__intro {
-        padding: 28px 28px 28px 0;
+        display: grid;
+        grid-template-columns: minmax(130px, 0.36fr) 1fr;
+        gap: 32px;
+        align-items: end;
+        padding: 24px 0;
       }
 
       .section-label {
@@ -208,67 +210,81 @@
 
       .sessions__intro h2 {
         margin: 0;
-        font-size: clamp(22px, 2.2vw, 34px);
+        font-size: clamp(24px, 2.5vw, 38px);
         letter-spacing: -0.045em;
-        line-height: 0.98;
+        line-height: 1;
+      }
+
+      .session-list {
+        border-top: 1px solid var(--line);
       }
 
       .session {
         position: relative;
-        min-height: 260px;
-        border-left: 1px solid var(--line);
-        padding: 28px clamp(22px, 2.4vw, 38px) 25px;
-        background: rgba(255, 253, 246, 0.36);
-        transition: background 180ms ease, transform 180ms ease;
+        display: grid;
+        grid-template-columns: 86px minmax(0, 1fr) minmax(150px, auto);
+        gap: clamp(22px, 3vw, 46px);
+        align-items: start;
+        padding: 26px 0 27px;
+        transition: background 180ms ease;
       }
 
-      .session:hover {
-        z-index: 1;
-        background: var(--cream);
-        transform: translateY(-4px);
-        box-shadow: var(--shadow);
+      .session + .session {
+        border-top: 1px solid var(--line);
       }
 
-      .session--featured {
-        background: var(--ink);
-        color: var(--cream);
+      .session::before {
+        position: absolute;
+        inset: 0 -18px;
+        z-index: -1;
+        border-radius: 12px;
+        background: transparent;
+        content: "";
+        transition: background 180ms ease;
       }
 
-      .session--featured:hover {
-        background: #25261b;
+      .session:hover::before {
+        background: rgba(255, 253, 246, 0.72);
       }
 
       .session__meta {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 42px;
-        font-size: 11px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+        color: var(--muted);
+        font-size: 10px;
         font-weight: 780;
         letter-spacing: 0.13em;
         text-transform: uppercase;
       }
 
-      .session--featured .session__meta {
-        color: rgba(255, 253, 246, 0.62);
-      }
-
       .session__number {
         display: grid;
-        width: 31px;
-        height: 31px;
+        width: 40px;
+        height: 40px;
         place-items: center;
-        border: 1px solid currentColor;
+        border: 1px solid var(--ink);
         border-radius: 50%;
+        color: var(--ink);
+        font-size: 11px;
       }
 
       .session h3 {
-        max-width: 520px;
-        margin: 0 0 14px;
-        font-size: clamp(24px, 2.45vw, 38px);
+        max-width: 780px;
+        margin: 0 0 10px;
+        font-size: clamp(23px, 2.25vw, 34px);
         letter-spacing: -0.047em;
         line-height: 1.02;
+      }
+
+      .session__kicker {
+        margin: 0 0 9px;
+        color: var(--coral);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
       }
 
       .session__summary {
@@ -279,23 +295,19 @@
         line-height: 1.55;
       }
 
-      .session--featured .session__summary {
-        color: rgba(255, 253, 246, 0.68);
-      }
-
       .session__points {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 12px;
-        margin: 21px 0 0;
+        margin: 18px 0 0;
         padding: 0;
         list-style: none;
       }
 
       .session__points li {
-        border-top: 1px solid rgba(255, 253, 246, 0.22);
+        border-top: 1px solid var(--line);
         padding-top: 9px;
-        color: rgba(255, 253, 246, 0.78);
+        color: var(--muted);
         font-size: 11px;
         line-height: 1.38;
       }
@@ -303,7 +315,7 @@
       .session__points strong {
         display: block;
         margin-bottom: 3px;
-        color: var(--acid);
+        color: var(--ink);
         font-size: 10px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -311,15 +323,20 @@
 
       .links {
         display: flex;
-        flex-wrap: wrap;
-        gap: 18px;
-        margin-top: 24px;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 25px;
       }
 
       .session__link {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        justify-content: space-between;
+        gap: 18px;
+        min-width: 142px;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 7px;
         font-size: 11px;
         font-weight: 800;
         letter-spacing: 0.11em;
@@ -336,10 +353,6 @@
 
       .session__link:hover::after {
         transform: translate(2px, -2px);
-      }
-
-      .session--featured .session__link {
-        color: var(--acid);
       }
 
       .footer {
@@ -400,28 +413,25 @@
           font-size: clamp(64px, 17vw, 118px);
         }
 
-        .sessions {
-          grid-template-columns: 1fr;
-        }
-
         .sessions__intro {
-          padding: 24px 0;
+          grid-template-columns: 1fr;
+          gap: 8px;
+          padding: 22px 0;
         }
 
         .session {
-          min-height: 0;
-          border-top: 1px solid var(--line);
-          border-left: 0;
-          padding: 26px 0 30px;
+          grid-template-columns: 62px minmax(0, 1fr);
+          gap: 18px;
+          padding-block: 24px 27px;
         }
 
-        .session--featured {
-          margin-inline: -22px;
-          padding-inline: 22px;
-        }
-
-        .session__meta {
-          margin-bottom: 30px;
+        .links {
+          grid-column: 2;
+          align-items: flex-start;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 18px;
+          padding-top: 0;
         }
 
         .footer {
@@ -441,6 +451,11 @@
 
         .session__points {
           grid-template-columns: 1fr;
+        }
+
+        .links {
+          flex-direction: column;
+          gap: 11px;
         }
       }
 
@@ -477,13 +492,8 @@
           font-size: 25mm;
         }
 
-        .session {
-          min-height: 67mm;
-        }
-
-        .session:hover {
-          box-shadow: none;
-          transform: none;
+        .session::before {
+          display: none;
         }
       }
     </style>
@@ -520,59 +530,60 @@
       <section class="sessions" aria-labelledby="sessions-title">
         <div class="sessions__intro">
           <p class="section-label">So far</p>
-          <h2 id="sessions-title">Two sessions.<br />One growing practice.</h2>
+          <h2 id="sessions-title">Two sessions. One growing practice.</h2>
         </div>
 
-        <article class="session">
-          <div class="session__meta">
-            <span>Session</span>
-            <span class="session__number">01</span>
-          </div>
-          <h3>Data Pipeline in Agentic AI</h3>
-          <p class="session__summary">Exploring the data layer behind agentic AI.</p>
-          <div class="links">
-            <a
-              class="session__link"
-              href="https://my.feishu.cn/wiki/FNdKw7VjLiGbSAk22TZcyKoDnwd"
-              target="_blank"
-              rel="noreferrer"
-              >Open session</a
-            >
-          </div>
-        </article>
+        <div class="session-list">
+          <article class="session">
+            <div class="session__meta">
+              <span>Session</span>
+              <span class="session__number">01</span>
+            </div>
+            <div class="session__content">
+              <p class="session__kicker">Agentic AI</p>
+              <h3>Data Pipeline in Agentic AI</h3>
+              <p class="session__summary">Exploring the data layer behind agentic AI.</p>
+            </div>
+            <div class="links">
+              <a
+                class="session__link"
+                href="https://my.feishu.cn/wiki/FNdKw7VjLiGbSAk22TZcyKoDnwd"
+                target="_blank"
+                rel="noreferrer"
+                >Open session</a
+              >
+            </div>
+          </article>
 
-        <article class="session session--featured">
-          <div class="session__meta">
-            <span>Session · DeepSeek Harness</span>
-            <span class="session__number">02</span>
-          </div>
-          <h3>The core is composition. Everything else is a plugin.</h3>
-          <p class="session__summary">
-            Through the Cordis plugin microkernel, E2B remote sandbox, and Goal long-running task cases,
-            we explored how reversibility enables hot reload, test isolation, and dynamic composition.
-          </p>
-          <ul class="session__points">
-            <li><strong>Compose</strong>Product = a plugin tree assembled by configuration.</li>
-            <li><strong>Remember</strong>Session = the single source of truth and append-only log.</li>
-            <li><strong>Extend</strong>Find the smallest sufficient seam outside the Agent Loop.</li>
-          </ul>
-          <div class="links">
-            <a
-              class="session__link"
-              href="https://my.feishu.cn/wiki/AGwkwpeZoiDI9skkPaMcYH8lnAc"
-              target="_blank"
-              rel="noreferrer"
-              >Read notes</a
-            >
-            <a
-              class="session__link"
-              href="https://claude.ai/code/artifact/ff51d108-4545-4c25-8af7-3aaa2c9ec568"
-              target="_blank"
-              rel="noreferrer"
-              >Open artifact</a
-            >
-          </div>
-        </article>
+          <article class="session">
+            <div class="session__meta">
+              <span>Session</span>
+              <span class="session__number">02</span>
+            </div>
+            <div class="session__content">
+              <p class="session__kicker">DeepSeek Harness</p>
+              <h3>The core is composition. Everything else is a plugin.</h3>
+              <p class="session__summary">
+                Through the Cordis plugin microkernel, E2B remote sandbox, and Goal long-running task cases,
+                we explored how reversibility enables hot reload, test isolation, and dynamic composition.
+              </p>
+              <ul class="session__points">
+                <li><strong>Compose</strong>Product = a plugin tree assembled by configuration.</li>
+                <li><strong>Remember</strong>Session = the single source of truth and append-only log.</li>
+                <li><strong>Extend</strong>Find the smallest sufficient seam outside the Agent Loop.</li>
+              </ul>
+            </div>
+            <div class="links">
+              <a
+                class="session__link"
+                href="https://claude.ai/code/artifact/ff51d108-4545-4c25-8af7-3aaa2c9ec568"
+                target="_blank"
+                rel="noreferrer"
+                >Open artifact</a
+              >
+            </div>
+          </article>
+        </div>
       </section>
 
       <footer class="footer">
