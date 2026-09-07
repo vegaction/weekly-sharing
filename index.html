@@ -284,13 +284,15 @@
 
       .session__details {
         display: flex;
-        gap: 10px;
-        align-items: center;
-        margin: 13px 0 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+        margin: 2px 0 0;
         color: var(--muted);
-        font-size: 10px;
+        font-size: 9px;
         font-weight: 760;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
+        line-height: 1.25;
         text-transform: uppercase;
       }
 
@@ -299,9 +301,9 @@
       }
 
       .session__details span::before {
-        margin-right: 10px;
+        margin-right: 3px;
         color: var(--coral);
-        content: "·";
+        content: "By";
       }
 
       .links {
@@ -512,13 +514,13 @@
             <div class="session__meta">
               <span>Session</span>
               <span class="session__number">01</span>
+              <p class="session__details">
+                <time datetime="2026-08-22">08.22</time><span>Joy</span>
+              </p>
             </div>
             <div class="session__content">
               <h3>Data Pipeline in Agentic AI</h3>
               <p class="session__summary">Exploring the data layer behind agentic AI.</p>
-              <p class="session__details">
-                <time datetime="2026-08-22">08.22</time><span>Shared by Joy</span>
-              </p>
             </div>
             <div class="links">
               <a
@@ -535,15 +537,15 @@
             <div class="session__meta">
               <span>Session</span>
               <span class="session__number">02</span>
+              <p class="session__details">
+                <time datetime="2026-08-29">08.29</time><span>ricko</span>
+              </p>
             </div>
             <div class="session__content">
               <h3>DeepSeek Harness</h3>
               <p class="session__summary">
                 The core retains only composition, while every capability—including the Agent Loop itself—is
                 implemented as a plugin.
-              </p>
-              <p class="session__details">
-                <time datetime="2026-08-29">08.29</time><span>Shared by ricko</span>
               </p>
             </div>
             <div class="links">
@@ -561,15 +563,15 @@
             <div class="session__meta">
               <span>Session</span>
               <span class="session__number">03</span>
+              <p class="session__details">
+                <time datetime="2026-09-06">09.06</time><span>Alex</span>
+              </p>
             </div>
             <div class="session__content">
               <h3>How Modern Tennis Became the Game We Know Today</h3>
               <p class="session__summary">
                 A tour of how tennis evolved—from tours, surfaces, equipment, and tactics to the Big Four,
                 player business, and twenty years of Chinese tennis.
-              </p>
-              <p class="session__details">
-                <time datetime="2026-09-06">09.06</time><span>Shared by Alex</span>
               </p>
             </div>
             <div class="links">
