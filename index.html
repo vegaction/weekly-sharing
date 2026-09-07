@@ -282,6 +282,28 @@
         line-height: 1.55;
       }
 
+      .session__details {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin: 13px 0 0;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 760;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .session__details time {
+        color: var(--ink);
+      }
+
+      .session__details span::before {
+        margin-right: 10px;
+        color: var(--coral);
+        content: "·";
+      }
+
       .links {
         display: flex;
         align-items: flex-end;
@@ -494,6 +516,9 @@
             <div class="session__content">
               <h3>Data Pipeline in Agentic AI</h3>
               <p class="session__summary">Exploring the data layer behind agentic AI.</p>
+              <p class="session__details">
+                <time datetime="2026-08-22">08.22</time><span>Shared by Joy</span>
+              </p>
             </div>
             <div class="links">
               <a
@@ -517,6 +542,9 @@
                 The core retains only composition, while every capability—including the Agent Loop itself—is
                 implemented as a plugin.
               </p>
+              <p class="session__details">
+                <time datetime="2026-08-29">08.29</time><span>Shared by ricko</span>
+              </p>
             </div>
             <div class="links">
               <a
@@ -539,6 +567,9 @@
               <p class="session__summary">
                 A tour of how tennis evolved—from tours, surfaces, equipment, and tactics to the Big Four,
                 player business, and twenty years of Chinese tennis.
+              </p>
+              <p class="session__details">
+                <time datetime="2026-09-06">09.06</time><span>Shared by Alex</span>
               </p>
             </div>
             <div class="links">
